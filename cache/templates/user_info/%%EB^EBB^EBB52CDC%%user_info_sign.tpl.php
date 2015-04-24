@@ -1,3 +1,5 @@
+<?php /* Smarty version 2.6.26, created on 2015-04-22 12:35:49
+         compiled from user_info_sign.tpl */ ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -12,6 +14,7 @@
         <!-- ================== BEGIN BASE CSS STYLE ================== -->
         <!--<link href="../../ColorAdmin/assets/plugins/jquery-ui-1.10.4/jquery-ui.css" rel="stylesheet" />
         <link href="../../ColorAdmin/assets/plugins/bootstrap-3.1.1/css/bootstrap.css" rel="stylesheet" />
+        
         <link href="../../ColorAdmin/assets/plugins/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" />
         <link href="../../ColorAdmin/assets/css/animate.css" rel="stylesheet" />
         <link href="../../ColorAdmin/assets/css/style.css" rel="stylesheet" /> 

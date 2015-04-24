@@ -43,7 +43,7 @@
                 <div class="container-fluid">
                     <!-- begin mobile sidebar expand / collapse button -->
                     <div class="navbar-header">
-                        <a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> Finder </a>
+                        <a href="" class="navbar-brand"><span class="navbar-logo"></span> Finder </a>
                         <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -124,16 +124,20 @@
                         <li class="dropdown navbar-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="../../../uploads/<!--{$user_pic_id}-->" alt="" /> 
+                                <input type="hidden" id="user_pic_id" value="<!--{$user_pic_id}-->" />
                                 <span class="hidden-xs" id="user_name" data-value="<!--{$user_name}-->"><!--{$user_name}--></span> <b class="caret"></b>
+                                <div class="progress progress-striped progress-sm active pull-right m-t-5">
+                                     <div class="progress-bar progress-bar-success" style="width: 40%">Grade 40%</div>
+                                </div>
                             </a>
                             <ul class="dropdown-menu animated fadeInLeft">
                                 <li class="arrow"></li>
                                 <li><a href="javascript:;">Edit Profile</a></li>
                                 <li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
-                                <li><a href="javascript:;">Calendar</a></li>
-                                <li><a href="javascript:;">Setting</a></li>
+                                <li><a href="../calendar/index.do">Calendar</a></li>
+                                <li><a href="../setting/index.do">Setting</a></li>
                                 <li class="divider"></li>
-                                <li><a href="javascript:;">Log Out</a></li>
+                                <li><a href="../login/index.do">Log Out</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -204,7 +208,7 @@
                     <!-- begin col-3 -->
                     <div class="col-md-3 col-sm-6">
                         <div class="widget widget-state bg-red">
-                            <div class="state-icon"><a href="javascript:;"><i class="fa fa-database"></i></a></div>
+                            <div class="state-icon"><a id="link_to_data"><i class="fa fa-database"></i></a></div>
                             <div class="state-info">
                                 <h4>Data</h4>
                                 <p>00:12:23</p>	
@@ -221,7 +225,7 @@
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <form class="form-horizontal form-bordered" action="http://localhost/finder/htdocs/user_info/home/addNewMood.do" 
+                            <form class="form-horizontal form-bordered" action="addNewMood.do" 
                                   method="POST">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -283,25 +287,20 @@
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-2">
                                     <!--{foreach from=$timeline item=time}-->    
-                                        <div class="panel panel-inverse">
-                                            <div class="panel-heading">
-                                                <div class="panel-heading-btn">
-                                                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                                                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                                                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                                                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-                                                </div>									      
+                                        <div class="panel">
+                                            <div class="panel-heading">								      
                                             </div>
                                             <div class="panel-body">
                                                 <div class="timeline-header">
                                                     <span class="userimage"><img src="../../../uploads/<!--{$time.user_pic_id}-->" /></span>
                                                     <span class="username"><!--{$time.user_name}--></span>
-                                                    <span class="pull-right text-muted"><!--{$time.user_visit}--></span>
+                                                    <span class="pull-right text-muted"><!--{$time.mood_type}--></span>
                                                 </div>
                                                 <div class="timeline-content">
                                                     <h4 class="template-title">
                                                         <i class="fa fa-map-marker text-danger fa-fw"></i>
-                                                        795 Folsom Ave, Suite 600 San Francisco, CA 94107
+                                                        795 Folsom Ave, Suite 600 San Francisco, CA 94107 
+                                                        <span class="pull-right"><!--{$time.publish_time|date_format:"%Y-%m-%d"}--></span>
                                                     </h4>
                                                     <p><!--{$time.mood_content}--></p>
                                                     <div class="gallery">
@@ -313,9 +312,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="timeline-footer">
-                                                    <a href="javascript:;" class="m-r-15"><i class="fa fa-thumbs-up fa-fw"></i> Like(<!--{$time.user_like}-->)</a>
-                                                    <a href="javascript:;" class="m-r-15"><i class="fa fa-thumbs-o-down fa-fw"></i> Hit(<!--{$time.user_hit}-->)</a>
-                                                    <a href="javascript:;"><i class="fa fa-comments fa-fw"></i> Comment</a>
+                                                    <a  class="m-r-15 user_like" data-review="like" id="<!--{$time.mood_id}-->_mood_like" data-value="<!--{$time.mood_id}-->"><i class="fa fa-thumbs-up fa-fw"></i> Like(<!--{$time.user_like}-->)</a>
+                                                    <a  class="m-r-15 user_hit" data-review="hit" id="<!--{$time.mood_id}-->_mood_hit" data-value="<!--{$time.mood_id}-->"><i class="fa fa-thumbs-o-down fa-fw"></i> Hit(<!--{$time.user_hit}-->)</a>
+                                                    <a class="accordion-toggle comment" data-toggle="collapse" data-mood-id="<!--{$time.mood_id}-->" href="#collapse_<!--{$time.mood_id}-->"><i class="fa fa-comments fa-fw"></i> Comment</a>
+                                                </div>
+                                            </div>
+                                            <div id="collapse_<!--{$time.mood_id}-->" class="panel-collapse collapse ">
+                                                <div class="panel-body">
+                                                </div>
+                                                <div class="panel-footer text-right">
+                                                    <textarea class="form-control no-rounded-corner" rows="5" id="review_content_submit_<!--{$time.mood_id}-->"></textarea>
+                                                    <a  class="btn btn-white btn-sm">Cancel</a>
+                                                    <a  data-mood-id ="<!--{$time.mood_id}-->" data-user-id="<!--{$time.user_id}-->" class="review_save btn btn-primary btn-sm m-l-5">Save</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -411,6 +419,86 @@
                         }
                     });
                 });
+          $('.user_like, .user_hit').click(function(){
+            var data = {};
+            var mood_id = $(this).attr('data-value');
+            var user_type = $(this).attr('data-review');
+            data.mood_id = mood_id;
+            if(user_type === 'hit'){
+                data.review = 0;
+            }else{
+                data.review = 1;
+            }
+            $.ajax({
+              url:'ajaxAddReview.do',
+              type:'get',
+              async:false,
+              data:data,
+              dataType:'json',
+              success:function(result){
+                   $('#'+mood_id+'_mood_like').html('<i class="fa fa-thumbs-up fa-fw"></i> Like('+result.like+')');
+                   $('#'+mood_id+'_mood_hit').html('<i class="fa fa-thumbs-o-down fa-fw"></i> Hit('+result.hit+')');
+              }
+            });
+          }); 
+          
+          $('.comment').click(function(){
+            var data = {};
+            var mood_id = $(this).attr('data-mood-id');
+            data.mood_id = mood_id;
+            $.ajax({
+              url:'ajaxGetReviewContent.do',
+              type:'get',
+              async:false,
+              data:data,
+              dataType:'json',
+              success:function(result){
+                  var content = '';
+                  var mood_id = result.mood_id;
+                  $.each(result.review, function(name, value){
+                    content += '<div class="media media-sm"><a class="pull-left" href="javascript:;"><img src="../../../uploads/'+value.user_pic_id+'" alt="" class="media-object" /></a><div class="media-body">';
+                    content += '<h4 class="media-heading">'+value.user_name+'</h4><p>'+value.review_content+'</p>';
+                    content +=' </div></div>';
+                  });
+                  $('#collapse_'+mood_id +' .panel-body').html(content);
+              }
+            });
+          });
+          
+          $('.review_save').click(function(){
+              var data = {};
+              var mood_id = $(this).attr('data-mood-id');
+              var review_content = $('#review_content_submit_'+mood_id).val();
+              var user_id = $('#user_id').val();
+              var user_name =$('#user_name').attr('data-value');
+              var user_pic_id = $('#user_pic_id').val();
+              var review_user_id = $(this).attr('data-user-id');
+              data.mood_id = mood_id;
+              data.review_content = review_content;
+              data.user_id = user_id;
+              data.review_user_id = review_user_id;
+              $.ajax({
+              url:'ajaxAddReviewContent.do',
+              type:'get',
+              async:false,
+              data:data,
+              dataType:'json',
+              success:function(result){
+                  var content = '';
+                  content = '<div class="media media-sm"><a class="pull-left" href="javascript:;"><img src="../../../uploads/'+user_pic_id+'" alt="" class="media-object" /></a><div class="media-body">';
+                  content += '<h4 class="media-heading">'+user_name+'</h4><p>'+review_content+'</p>';
+                  content +=' </div></div>';
+                  $('#collapse_'+mood_id+' .panel-body' ).append(content);
+              }
+            });
+            $('#review_content_submit_'+mood_id).val("");
+          });
+          
+          $('#link_to_data').click(function(){
+              var user_id = $('#user_id').val();
+              window.location ="../chart/index.do?user_id="+user_id;
+          });
+               
         </script>
         <script>
                 (function (i, s, o, g, r, a, m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

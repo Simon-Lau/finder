@@ -27,13 +27,14 @@ class login_Controller extends Controller {
             $this->assign("login_error", "error_login");
             $this->indexAction();          
         }else{
-            $this->assign("user_id", $data['user_id']);
-            $this->assign("user_name", $data['user_name']);
-            $this->assign("user_rank", $data['user_rank']);
-            $this->assign('user_pic_id', $data['user_pic_id']);
-            $this->assign('user_type', $data['user_type']);
-            $tpl = "user_info_home.tpl";
-            $this->display($tpl);
+            session_start();
+            $_SESSION['user_id'] = $data['user_id'];
+            $_SESSION['user_name'] = $data['user_name'];
+            $_SESSION['user_rank'] = $data['user_rank'];
+            $_SESSION['user_pic_id'] = $data['user_pic_id'];
+            $_SESSION['user_type'] = $data['user_type'];
+            
+            header("Location: ../home/showPage.do");
         }        
     }
     

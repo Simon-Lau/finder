@@ -1,3 +1,5 @@
+<?php /* Smarty version 2.6.26, created on 2015-04-10 17:31:34
+         compiled from user_info_setting.tpl */ ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -10,13 +12,12 @@
         <meta content="" name="author">
 
         <!-- ================== BEGIN BASE CSS STYLE ================== -->
-        <!--<link href="../../ColorAdmin/assets/plugins/jquery-ui-1.10.4/jquery-ui.css" rel="stylesheet" />
+        <link href="../../ColorAdmin/assets/plugins/jquery-ui-1.10.4/jquery-ui.css" rel="stylesheet" />
         <link href="../../ColorAdmin/assets/plugins/bootstrap-3.1.1/css/bootstrap.css" rel="stylesheet" />
         <link href="../../ColorAdmin/assets/plugins/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" />
         <link href="../../ColorAdmin/assets/css/animate.css" rel="stylesheet" />
         <link href="../../ColorAdmin/assets/css/style.css" rel="stylesheet" /> 
-        <link href="../../ColorAdmin/assets/css/style-responsive.css" rel="stylesheet" /> -->
-        <link type="text/css" rel="stylesheet" href="/min/b=finder/htdocs/ColorAdmin/assets&amp;f=plugins/bootstrap-3.1.1/css/bootstrap.css,plugins/jquery-ui-1.10.4/jquery-ui.css,plugins/font-awesome-4.1.0/css/font-awesome.min.css,css/animate.css,css/style.css,css/style-responsive.css" />
+        <link href="../../ColorAdmin/assets/css/style-responsive.css" rel="stylesheet" />
         <!-- ================== END BASE CSS STYLE ================== -->
 
         <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
@@ -47,15 +48,109 @@
                 <div class="container-fluid">
                     <!-- begin mobile sidebar expand / collapse button -->
                     <div class="navbar-header">
-                        <a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> Finder</a>
+                        <a href="" class="navbar-brand"><span class="navbar-logo"></span> Finder </a>
                         <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <div class="nav navbar-nav navbar-right navbar-brand" >Every thing is new</div>
                     <!-- end mobile sidebar expand / collapse button -->
+
+                    <!-- begin header navigation right -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <form class="navbar-form full-width">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Enter keyword" />
+                                    <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle f-s-14">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label">5</span>
+                            </a>
+                            <ul class="dropdown-menu media-list pull-right animated fadeInDown">
+                                <li class="dropdown-header">Notifications (5)</li>
+                                <li class="media">
+                                    <a href="javascript:;">
+                                        <div class="pull-left media-object bg-red"><i class="fa fa-bug"></i></div>
+                                        <div class="media-body">
+                                            <h6 class="media-heading">Server Error Reports</h6>
+                                            <div class="text-muted">3 minutes ago</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="media">
+                                    <a href="javascript:;">
+                                        <div class="pull-left"><img src="../../ColorAdmin/assets/img/user-1.jpg" class="media-object" alt="" /></div>
+                                        <div class="media-body">
+                                            <h6 class="media-heading">John Smith</h6>
+                                            <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
+                                            <div class="text-muted">25 minutes ago</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="media">
+                                    <a href="javascript:;">
+                                        <div class="pull-left"><img src="../../ColorAdmin/assets/img/user-2.jpg" class="media-object" alt="" /></div>
+                                        <div class="media-body">
+                                            <h6 class="media-heading">Olivia</h6>
+                                            <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
+                                            <div class="text-muted">35 minutes ago</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="media">
+                                    <a href="javascript:;">
+                                        <div class="pull-left media-object bg-green"><i class="fa fa-plus"></i></div>
+                                        <div class="media-body">
+                                            <h6 class="media-heading"> New User Registered</h6>
+                                            <div class="text-muted">1 hour ago</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="media">
+                                    <a href="javascript:;">
+                                        <div class="pull-left media-object bg-blue"><i class="fa fa-envelope"></i></div>
+                                        <div class="media-body">
+                                            <h6 class="media-heading"> New Email From John</h6>
+                                            <div class="text-muted">2 hour ago</div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="dropdown-footer text-center">
+                                    <a href="javascript:;">View more</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown navbar-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="../../../uploads/<?php echo $this->_tpl_vars['user_pic_id']; ?>
+" alt="" /> 
+                                <input type="hidden" id="user_pic_id" value="<?php echo $this->_tpl_vars['user_pic_id']; ?>
+" />
+                                <span class="hidden-xs" id="user_name" data-value="<?php echo $this->_tpl_vars['user_name']; ?>
+"><?php echo $this->_tpl_vars['user_name']; ?>
+</span> <b class="caret"></b>
+                                <div class="progress progress-striped progress-sm active pull-right m-t-5">
+                                     <div class="progress-bar progress-bar-success" style="width: 40%">Grade 40%</div>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInLeft">
+                                <li class="arrow"></li>
+                                <li><a href="javascript:;">Edit Profile</a></li>
+                                <li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
+                                <li><a href="http://localhost/finder/htdocs/user_info/calendar/index.do">Calendar</a></li>
+                                <li><a href="http://localhost/finder/htdocs/user_info/setting/index.do">Setting</a></li>
+                                <li class="divider"></li>
+                                <li><a href="http://localhost/finder/htdocs/user_info/login/index.do">Log Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- end header navigation right -->
                 </div>
                 <!-- end container-fluid -->
             </div>
@@ -77,7 +172,7 @@
                                 <h4 class="panel-title">Basic Form Validation</h4>
                             </div>
                             <div class="panel-body panel-form">
-                                <form class="form-horizontal form-bordered" action="signUp.do" method="POST" data-validate="parsley">
+                                <form class="form-horizontal form-bordered" action="http://localhost/finder/htdocs/user_info/login/signUp.do" method="POST" data-validate="parsley">
                                     <div class="form-group">
                                         <label class="control-label col-md-4 col-sm-4 ui-sortable" for="user_name">User Name * :</label>
                                         <div class="col-md-6 col-sm-6 ui-sortable">
@@ -183,7 +278,7 @@
         <!-- end page container -->
 
         <!-- ================== BEGIN BASE JS ================== -->
-        <script src="../../ColorAdmin/assets/plugins/jquery-1.7.2/jquery-1.7.2.min.js"></script>
+        <script src="../../ColorAdmin/assets/plugins/jquery-1.7.2/jquery-1.7.2.js"></script>
         <script src="../../ColorAdmin/assets/plugins/jquery-ui-1.10.4/ui/minified/jquery-ui.min.js"></script>
         <script src="../../ColorAdmin/assets/plugins/bootstrap-3.1.1/js/bootstrap.min.js"></script>
         <script src="../../ColorAdmin/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -199,7 +294,7 @@
 
         <!-- ================== BEGIN PAGE LEVEL JS ================== -->
         <script src="../../ColorAdmin/assets/js/apps.js"></script>
-        <script src="../../uploadify/jquery.uploadify.min.js"></script>
+        <script src="../../uploadify/jquery.uploadify.js"></script>
         <script src="../../ColorAdmin/assets/plugins/jquery-isotope/jquery.isotope.js"></script>
         <script src="../../ColorAdmin/assets/plugins/lightbox/lightbox.js"></script>
         <script src="../../ColorAdmin/assets/js/gallery.js"></script>
@@ -223,7 +318,7 @@
             var data = {};
             data.user_name = $('#user_name').val();
             $.ajax({
-              url:'AjaxTestUserName.do',
+              url:'http://localhost/finder/htdocs/user_info/login/AjaxTestUserName.do',
               type:'get',
               async:false,
               data:data,
@@ -252,9 +347,7 @@
                     },
                     'onUploadSuccess' : function(file, data, response){
                         var user_name = $('#user_name').val();
-                        console.log(file);
                         var file_name = "../../../uploads/user_tag_"+user_name+file.type;
-                        console.log(file_name);
                         $('#user_pic_id').val("user_tag_"+user_name+file.type);
                         $('#show_img').attr("src", file_name);
                         $('#show_img_href').attr("href", file_name);

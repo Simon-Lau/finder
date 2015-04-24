@@ -41,7 +41,7 @@
             <!-- end brand -->
             <div class="login-content">
                 <div><label><!--{$login_error}--></label></div>
-                <form action="http://localhost/finder/htdocs/user_info/login/login.do" method="POST" class="margin-bottom-0">
+                <form action="login.do" method="POST" class="margin-bottom-0">
                     <div class="form-group m-b-20">
                         <input type="text" class="form-control input-lg" placeholder="User Name/ Phone Number" name="user_id" value="<!--{$user_id}-->"/>
                     </div>
@@ -82,7 +82,7 @@
 		});
                 
                 $('#sign_up').click(function(event){
-                    window.location = "http://localhost/finder/htdocs/user_info/login/sign.do";
+                    window.location = "sign.do";
                 });
                 
 	</script>

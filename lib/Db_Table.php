@@ -355,7 +355,6 @@ class Q_Db_Table {
             }
             $where = $this->whereby($pkData);
         }
-
         $ret = $this->_db->update($this->_tableName, $data, $where);
         if ($pkData) {
             return $pkData;

@@ -116,14 +116,66 @@ class user_info_user_Model extends Model{
           $result[$i]['user_name'] = $val['user_name'];
           $result[$i]['mood_content'] = $val['mood_content'];
           $result[$i]['mood_pic_id'] = $val['mood_pic_id'];
-          $result[$i]['publish_time'] = $val['publish_time'];
-          $result[$i]['mood_type'] = $val['mood_type'];
+          $result[$i]['publish_time'] = strtotime($val['publish_time']);
+          if($val['mood_type'] == 1){
+              $result[$i]['mood_type'] ='self';
+          }else if($val['mood_type'] == 2){
+              $result[$i]['mood_type'] ='public';
+          }else{
+              $result[$i]['mood_type'] ='friend';
+          }
           $result[$i]['user_like'] = $val['mood_user_like'];
           $result[$i]['user_hit'] = $val['mood_user_hit'];
           $result[$i]['mood_id'] = $mood_id;
+          $result[$i]['user_id'] = $user_id;
           $result[$i]['user_pic_id'] = $user_data[$user_id]['user_pic_id'];
           $i++;
       }
       return $result;
+    }
+    
+    public function updateUserMoodTable($data, $mood_id){
+        $sql = "UPDATE user_mood_table SET " .$data . " WHERE mood_id ='".$mood_id ."'";
+        $ret = $this->_finderUserMoodDB->query($sql);
+    }
+    
+    public function getUserMoodByIds($where){
+        $ret = $this->_finderUserMoodDB->fetchAll($where);
+        $result = array();
+        foreach ($ret  as $val){
+            $result[$val['mood_id']] = $val;
+        }
+        return $result;
+    }
+    
+    public  function insertUserReviewTable($data){
+        $sql = "INSERT INTO user_review_table (mood_id, review_user_id, review_time, review_content, user_id) VALUES (";
+        $sql .= "'".$data['mood_id']."',";
+        $sql .= "'".$data['review_user_id']."',";
+        $sql .= "'".$data['review_time']."',";
+        $sql .= "'".$data['review_content']."',";
+        $sql .= "'".$data['user_id']."')";
+        $this->_finderUserReviewDB->query($sql);
+    }
+    
+    public function getUserReviewByIds($where){
+        $ret = $this->_finderUserReviewDB->fetchAll($where);
+        $result = array();
+        $user_id = array();
+        foreach ($ret as $val){
+            $user_id['user_id'][] = $val['user_id'];
+        }
+        $user_data = $this->getUserByIds($user_id);
+        $i = 0;
+        foreach($ret as $val){
+            $user_id = $val['user_id'];
+            $result[$i]['review_content'] = $val['review_content'];
+            $result[$i]['user_pic_id'] =$user_data[$user_id]['user_pic_id'];
+            $result[$i]['review_time'] = $val['review_time'];
+            $result[$i]['user_id'] = $user_id;
+            $result[$i]['user_name'] = $user_data[$user_id]['user_name'];
+            $i++;
+        }
+        return $result;
     }
 }

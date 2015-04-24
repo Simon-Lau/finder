@@ -14,7 +14,7 @@ if (!empty($_FILES)) {
         $last = explode(".", $_FILES['Filedata']['name'])[1];
 	$targetFile = rtrim($targetPath,'/') . '/mood_pic_' . $fileName.".".$last;
 	// Validate the file type
-	$fileTypes = array('jpg','jpeg','gif','png'); // File extensions
+	$fileTypes = array('jpg','JPG','jpeg','gif','png','PNG','gif'); // File extensions
 	$fileParts = pathinfo($_FILES['Filedata']['name']);
 	if (in_array($fileParts['extension'],$fileTypes)) {
 		move_uploaded_file($tempFile,$targetFile);
